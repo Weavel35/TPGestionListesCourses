@@ -1,4 +1,4 @@
-package fr.eni.GestionListeCourses.dal;
+package fr.eni.GestionsListeCourses.dal;
 
 import java.util.List;
 

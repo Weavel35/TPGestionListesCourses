@@ -1,9 +1,9 @@
-package fr.eni.GestionListeCourses.dal.jdbc;
+package fr.eni.GestionListesCourses.dal.jdbc;
 
 import java.util.List;
 
-import fr.eni.GestionListeCourses.dal.ArticleDAO;
 import fr.eni.GestionListesCourses.bo.Article;
+import fr.eni.GestionsListeCourses.dal.ArticleDAO;
 
 public class ArticleDAOJdbc implements ArticleDAO {
 

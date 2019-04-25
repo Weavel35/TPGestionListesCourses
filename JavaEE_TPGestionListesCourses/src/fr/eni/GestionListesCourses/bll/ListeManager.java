@@ -1,4 +1,4 @@
-package fr.eni.GestionListeCourses.bll;
+package fr.eni.GestionListesCourses.bll;
 
 import java.util.ArrayList;
 import java.util.List;

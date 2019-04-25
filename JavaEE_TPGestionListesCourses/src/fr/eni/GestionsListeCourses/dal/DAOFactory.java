@@ -1,7 +1,7 @@
-package fr.eni.GestionListeCourses.dal;
+package fr.eni.GestionsListeCourses.dal;
 
-import fr.eni.GestionListeCourses.dal.jdbc.ArticleDAOJdbc;
-import fr.eni.GestionListeCourses.dal.jdbc.ListeDAOJdbc;
+import fr.eni.GestionListesCourses.dal.jdbc.ArticleDAOJdbc;
+import fr.eni.GestionListesCourses.dal.jdbc.ListeDAOJdbc;
 
 public abstract class DAOFactory {
 	
