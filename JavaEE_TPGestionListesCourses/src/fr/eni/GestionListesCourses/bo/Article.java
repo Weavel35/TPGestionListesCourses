@@ -13,6 +13,7 @@ public class Article implements Serializable {
 	private String nom;
 	private int quantite;
 	private float prixUnitaire;
+	private boolean coche = false;
 	public int getId() {
 		return id;
 	}
@@ -37,6 +38,12 @@ public class Article implements Serializable {
 	public void setPrixUnitaire(float prixUnitaire) {
 		this.prixUnitaire = prixUnitaire;
 	}
+	public boolean isCoche() {
+		return coche;
+	}
+	public void setCoche(boolean coche) {
+		this.coche = coche;
+	}
 	public Article() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,6 +53,14 @@ public class Article implements Serializable {
 		this.nom = nom;
 		this.quantite = quantite;
 		this.prixUnitaire = prixUnitaire;
+	}
+	public Article(int id, String nom, int quantite, float prixUnitaire, boolean coche) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.quantite = quantite;
+		this.prixUnitaire = prixUnitaire;
+		this.coche = coche;
 	}
 	
 }
