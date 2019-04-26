@@ -50,4 +50,8 @@ public abstract class ListeManager {
 	public static void modifierArticle(Article article, int idList) {
 		DAOFactory.getArticleDAO().update(article, idList);
 	}
+	
+	public static void modifierListe(Liste liste) {
+		DAOFactory.getListeDAO().update(liste);
+	}
 }

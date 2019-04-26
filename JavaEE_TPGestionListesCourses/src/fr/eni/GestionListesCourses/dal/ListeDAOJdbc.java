@@ -28,6 +28,10 @@ public class ListeDAOJdbc implements ListeDAO {
 	private static final String DELETE_LISTE_BY_ID = 
 			"DELETE FROM Listes \r\n"  
 					+ "WHERE id=%d;";
+	private static final String UPDATE_LISTE_BY_ID = 
+			"UPDATE Listes\r\n"
+					+ " SET nom=?"  
+					+ " WHERE id=?;";
 	
 	/**
 	 * Variable booléenne qui permet de déterminer quelle méthode de connexion utiliser: 
@@ -188,6 +192,38 @@ public class ListeDAOJdbc implements ListeDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	@Override
+	public void update(Liste liste) {
+		int nbLignes = 0;
+		Connection uneConnexion = null;
+		PreparedStatement psmt = null;
+		try {
+			uneConnexion = JDBCTestTools.getConnection();
+			
+			psmt = uneConnexion.prepareStatement(UPDATE_LISTE_BY_ID, Statement.RETURN_GENERATED_KEYS);
+			psmt.setString(1, liste.getNom());
+			psmt.setInt(2, liste.getId());			
+			nbLignes = psmt.executeUpdate();
+
+			uneConnexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  finally {
+
+			try {
+				//Fermer le statement
+				if (psmt != null) {
+					psmt.close();
+				}
+				//Fermer la connexion
+				uneConnexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(nbLignes + " Liste(s) mis a jour");
+		
 	}
 	
 }

@@ -36,6 +36,10 @@ public class TestDAL {
 		a.setNom("blablabla" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
 		a.setPrixUnitaire(2.53f);
 		ListeManager.modifierArticle(liste.getArticles().get(0), liste.getId());
+		
+		//Update liste
+		liste.setNom("nouveau nom");
+		ListeManager.modifierListe(liste);
 		//select id
 		System.out.println(ListeManager.selectionnerListe(liste.getId()));
 		
