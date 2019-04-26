@@ -1,8 +1,8 @@
 package fr.eni.GestionsListeCourses.dal;
 
-import java.util.List;
-
 import fr.eni.GestionListesCourses.bo.Liste;
+
+import java.util.List;
 
 public interface ListeDAO {
 	public void insert();
