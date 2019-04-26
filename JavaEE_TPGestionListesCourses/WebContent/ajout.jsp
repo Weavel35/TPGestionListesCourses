@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Gestion Listes - Home</title>
+    <script type="text/javascript" src="main.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -17,9 +18,37 @@
 <body>
 <%@ include file="/WEB-INF/header.html" %>
 
-<h1>Ajout Liste</h1>
+<h1 align="center">Ajout Liste</h1>
 <form>
+<div>
+    <table id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th></th>
+            <th class="th-sm">Nom
+            </th>
+            <th class="th-sm">Quantité
+            </th>
+            <th class="th-sm">Prix Unitaire
+            </th>
+            <th class="th-sm">Prix Total
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td></td>
+            <td>Coca</td>
+            <td>2</td>
+            <td>1.50</td>
+            <td>3</td>
+            </tr>
+        </tbody>
+        <tfoot>
 
+        </tfoot>
+    </table>
+</div>
 </form>
 
 <%@ include file="/WEB-INF/footer.html" %>
