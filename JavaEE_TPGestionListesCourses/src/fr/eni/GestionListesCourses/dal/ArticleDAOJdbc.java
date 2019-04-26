@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.GestionListesCourses.bo.Article;
-import fr.eni.GestionListesCourses.bo.Liste;
 import fr.eni.GestionListesCourses.test.JDBCTestTools;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -18,22 +17,27 @@ public class ArticleDAOJdbc implements ArticleDAO {
 	private static final String INSERT_ARTICLE = 
 			"INSERT INTO Articles\r\n"  
 					+ "(nom, prixUnitaire, quantite, id_liste, coche)\r\n" 
-					+ "VALUES\r\n" 
-					+ "(?,?,?,?,?);";
+					+ " VALUES\r\n" 
+					+ " (?,?,?,?,?);";
 	private static final String SELECT_ALL_ARTICLES = 
 			"SELECT * FROM Articles;" ;
 	
 	private static final String SELECT_ARTICLE_BY_ID = 
 			"SELECT * FROM Articles \r\n"  
-					+ "WHERE id=%d";
+					+ "WHERE id=%d;";
 	
 	private static final String SELECT_ARTICLE_BY_LISTE_ID = 
 			"SELECT * FROM Articles \r\n"  
-					+ "WHERE id_liste=%d";
+					+ "WHERE id_liste=%d;";
 	
 	private static final String DELETE_ARTICLE_BY_ID = 
 			"DELETE FROM Articles \r\n"  
-					+ "WHERE id=%d";
+					+ "WHERE id=%d;";
+	
+	private static final String UPDATE_ARTICLE_BY_ID = 
+			"UPDATE Articles\r\n"
+					+ " SET nom=?, prixUnitaire=?, quantite=?, id_liste=?, coche=?"  
+					+ " WHERE id=?;";
 	
 	/**
 	 * Variable booléenne qui permet de déterminer quelle méthode de connexion utiliser: 
@@ -168,7 +172,43 @@ public class ArticleDAOJdbc implements ArticleDAO {
 				e.printStackTrace();
 			}
 		}
+	}
 
+	@Override
+	public void update(Article article, int idList) {
+		int nbLignes = 0;
+		Connection uneConnexion = null;
+		PreparedStatement psmt = null;
+		try {
+			uneConnexion = JDBCTestTools.getConnection();
+			
+			psmt = uneConnexion.prepareStatement(UPDATE_ARTICLE_BY_ID, Statement.RETURN_GENERATED_KEYS);
+			psmt.setString(1, article.getNom());
+			psmt.setFloat(2, article.getPrixUnitaire());
+			psmt.setInt(3, article.getQuantite());
+			psmt.setInt(4, idList);
+			psmt.setBoolean(5, article.isCoche());
+			psmt.setInt(6, article.getId());			
+			nbLignes = psmt.executeUpdate();
+
+			uneConnexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  finally {
+
+			try {
+				//Fermer le statement
+				if (psmt != null) {
+					psmt.close();
+				}
+				//Fermer la connexion
+				uneConnexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(nbLignes + " Article(s) mis a jour");
+		
 	}
 
 }

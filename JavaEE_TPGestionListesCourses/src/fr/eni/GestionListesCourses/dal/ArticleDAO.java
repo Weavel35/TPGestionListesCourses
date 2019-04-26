@@ -10,4 +10,5 @@ public interface ArticleDAO {
 	public List<Article> selectAll();
 	public List<Article> selectByListe(int listId);
 	public void delete(int id);
+	public void update(Article article, int idList);
 }

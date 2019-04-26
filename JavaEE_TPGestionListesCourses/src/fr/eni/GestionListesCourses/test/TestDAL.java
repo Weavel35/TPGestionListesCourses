@@ -28,6 +28,14 @@ public class TestDAL {
 		
 		ListeManager.ajouterListe(liste);
 		System.out.println(liste.toString());
+		
+		//Update article
+		Article a = liste.getArticles().get(0);
+		a.setCoche(true);
+		a.setQuantite(200);
+		a.setNom("blablabla" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
+		a.setPrixUnitaire(2.53f);
+		ListeManager.modifierArticle(liste.getArticles().get(0), liste.getId());
 		//select id
 		System.out.println(ListeManager.selectionnerListe(liste.getId()));
 		

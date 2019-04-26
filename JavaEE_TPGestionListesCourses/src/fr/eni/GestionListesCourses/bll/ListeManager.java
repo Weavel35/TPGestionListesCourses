@@ -46,4 +46,8 @@ public abstract class ListeManager {
 		
 		DAOFactory.getListeDAO().delete(liste.getId());
 	}
+	
+	public static void modifierArticle(Article article, int idList) {
+		DAOFactory.getArticleDAO().update(article, idList);
+	}
 }

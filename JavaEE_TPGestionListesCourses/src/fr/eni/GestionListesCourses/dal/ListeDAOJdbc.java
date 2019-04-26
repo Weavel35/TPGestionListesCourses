@@ -23,11 +23,11 @@ public class ListeDAOJdbc implements ListeDAO {
 	
 	private static final String SELECT_LISTE_BY_ID = 
 			"SELECT * FROM Listes \r\n"  
-					+ "WHERE id=%d";
+					+ "WHERE id=%d;";
 	
 	private static final String DELETE_LISTE_BY_ID = 
 			"DELETE FROM Listes \r\n"  
-					+ "WHERE id=%d";
+					+ "WHERE id=%d;";
 	
 	/**
 	 * Variable booléenne qui permet de déterminer quelle méthode de connexion utiliser: 
