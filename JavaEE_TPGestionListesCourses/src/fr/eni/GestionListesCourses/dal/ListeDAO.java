@@ -9,4 +9,5 @@ public interface ListeDAO {
 	public Liste select(int id);
 	public List<Liste> selectAll();
 	public void delete(int id);
+	public void update(Liste liste);
 }

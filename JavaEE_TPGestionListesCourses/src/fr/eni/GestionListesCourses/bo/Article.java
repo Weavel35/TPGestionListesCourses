@@ -14,6 +14,7 @@ public class Article implements Serializable {
 	private int quantite;
 	private float prixUnitaire;
 	private boolean coche = false;
+	
 	public int getId() {
 		return id;
 	}

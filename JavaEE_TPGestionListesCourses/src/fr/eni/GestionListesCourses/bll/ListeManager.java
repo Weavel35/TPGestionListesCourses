@@ -1,30 +1,57 @@
 package fr.eni.GestionListesCourses.bll;
 
-import fr.eni.GestionListesCourses.bo.Article;
-import fr.eni.GestionListesCourses.bo.Liste;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeManager {
-	List<Liste> listeDesListes;
+import fr.eni.GestionListesCourses.bo.Article;
+import fr.eni.GestionListesCourses.bo.Liste;
+import fr.eni.GestionListesCourses.dal.DAOFactory;
+
+public abstract class ListeManager {
 	
-	public void ajouterListe(Liste listeArticles) {
+	public static void ajouterListe(Liste listeArticles) {
 		//TODO vérifications ?
 		
-		
-		
-		listeDesListes.add(listeArticles);
+		DAOFactory.getListeDAO().insert(listeArticles);
+		for(Article a : listeArticles.getArticles()) {
+			DAOFactory.getArticleDAO().insert(a, listeArticles.getId());
+		}
 		
 	}
 	
-	public List<Liste> selectionnerToutesListes(){
-		// TODO
-		return listeDesListes;
+	public static List<Liste> selectionnerToutesListes(){
+		List<Liste> listeDeListes = DAOFactory.getListeDAO().selectAll();
+		for(Liste l : listeDeListes) {
+			l.setArticles( DAOFactory.getArticleDAO().selectByListe(l.getId()));
+		}
+		
+		return listeDeListes;
 	}
 	
-	public List<Article> selectionnerPanier(){
+	public static List<Article> selectionnerPanier(){
 		// TODO
 		return new ArrayList<Article>();
+	}
+
+	public static Liste selectionnerListe(int id) {
+		Liste liste = DAOFactory.getListeDAO().select(id);
+		//TODO articles
+		return liste;
+	}
+	
+	public static void supprimerListe(Liste liste) {
+		for(Article art : liste.getArticles()) {
+			DAOFactory.getArticleDAO().delete(art.getId());
+		}
+		
+		DAOFactory.getListeDAO().delete(liste.getId());
+	}
+	
+	public static void modifierArticle(Article article, int idList) {
+		DAOFactory.getArticleDAO().update(article, idList);
+	}
+	
+	public static void modifierListe(Liste liste) {
+		DAOFactory.getListeDAO().update(liste);
 	}
 }
