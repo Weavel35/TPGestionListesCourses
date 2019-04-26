@@ -11,8 +11,16 @@ public class Liste implements Serializable {
 	 */
 	private static final long serialVersionUID = -197824200973824682L;
 	
+	private int id;
 	private String nom;
 	private List<Article> articles;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -42,6 +50,18 @@ public class Liste implements Serializable {
 		this();
 		this.nom = nom;
 	}
-	
-	
+	@Override
+	public String toString() {
+		String affArticles = "";
+		for(Article article : articles) {
+			affArticles += "\n" + article.toString();
+		}
+		
+		return String.format("%s : id=%d, nom=%s, articles=",
+				this.getClass().getSimpleName(),
+				getId(),
+				getNom(),
+				affArticles
+				);
+	}
 }

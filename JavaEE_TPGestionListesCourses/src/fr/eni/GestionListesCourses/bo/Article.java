@@ -62,5 +62,15 @@ public class Article implements Serializable {
 		this.prixUnitaire = prixUnitaire;
 		this.coche = coche;
 	}
-	
+	@Override
+	public String toString() {
+		return String.format("%s : id=%d, nom=%s, prixUnitaire=%.2f, quantité=%d, coché=%b",
+				getClass().getSimpleName(),
+				getId(),
+				getNom(),
+				getPrixUnitaire(),
+				getQuantite(),
+				isCoche()
+				);
+	}
 }

@@ -11,6 +11,9 @@ public class ListeManager {
 	
 	public void ajouterListe(Liste listeArticles) {
 		//TODO vérifications ?
+		
+		
+		
 		listeDesListes.add(listeArticles);
 		
 	}

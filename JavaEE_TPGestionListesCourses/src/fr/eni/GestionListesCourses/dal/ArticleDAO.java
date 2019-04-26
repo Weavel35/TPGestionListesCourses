@@ -1,4 +1,4 @@
-package fr.eni.GestionsListeCourses.dal;
+package fr.eni.GestionListesCourses.dal;
 
 import fr.eni.GestionListesCourses.bo.Article;
 
