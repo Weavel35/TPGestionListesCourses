@@ -54,10 +54,10 @@ public class Liste implements Serializable {
 	public String toString() {
 		String affArticles = "";
 		for(Article article : articles) {
-			affArticles += "\n" + article.toString();
+			affArticles += "\n\t" + article.toString();
 		}
 		
-		return String.format("%s : id=%d, nom=%s, articles=",
+		return String.format("%s : id=%d, nom=%s, articles=%s",
 				this.getClass().getSimpleName(),
 				getId(),
 				getNom(),

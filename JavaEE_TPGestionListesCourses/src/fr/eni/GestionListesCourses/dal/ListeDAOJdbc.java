@@ -25,6 +25,10 @@ public class ListeDAOJdbc implements ListeDAO {
 			"SELECT * FROM Listes \r\n"  
 					+ "WHERE id=%d";
 	
+	private static final String DELETE_LISTE_BY_ID = 
+			"DELETE FROM Listes \r\n"  
+					+ "WHERE id=%d";
+	
 	/**
 	 * Variable booléenne qui permet de déterminer quelle méthode de connexion utiliser: 
 	 * TRUE: utilise JDBCTestTool pour obtenir les informations de connexion.
@@ -155,8 +159,35 @@ public class ListeDAOJdbc implements ListeDAO {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		Statement stmt = null;
+		Connection uneConnexion = null;
+				
+		try {
+			if(isTest) {
+				uneConnexion = JDBCTestTools.getConnection();
+			} else {
+				uneConnexion = ConnectionProvider.getConnection();
+			}
+			String sql = String.format(DELETE_LISTE_BY_ID, id);
+			stmt = uneConnexion.createStatement();
+			int nbRows = stmt.executeUpdate(sql);
+			System.out.println(nbRows + " Ligne(s) supprimées");
+			
+			uneConnexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  finally {
+			try {
+				//Fermer le statement
+				if (stmt != null) {
+					stmt.close();
+				}
+				//Fermer la connexion
+				uneConnexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }
